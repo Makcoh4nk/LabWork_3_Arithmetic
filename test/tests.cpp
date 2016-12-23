@@ -301,6 +301,20 @@ TEST(Calculation, hard_calculation_3)
 
 int main(int ac, char* av[])
 {
-	testing::InitGoogleTest(&ac, av);
-	return RUN_ALL_TESTS();
+		Variable v[2];								// Массив структур переменных
+		v[0].name = 'x';							// Имя переменной
+		v[0].value = 5;								// Значение переменной
+
+		v[1].name = 'y';
+		v[1].value = 3;
+
+		char act[] = "x+y";							// Исходное выражение в инфиксной записи 
+
+		Arithmetic str(act);						// Конструктор преобразования строки в форму ОПЗ
+		char* RPN = str.getRPN();					// Получаем строку в форме ОПЗ
+		double res = str.calculation(RPN, v, 2);	// Вычисляем выражение, используя ОПЗ
+
+		testing::InitGoogleTest(&ac, av);
+		return RUN_ALL_TESTS();
 }
+
