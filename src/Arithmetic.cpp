@@ -7,12 +7,11 @@ Arithmetic::Arithmetic()
 
 Arithmetic::Arithmetic(char* str)
 {
-	const int max = 100;
 	int i = 0, j = 0;
 	bool flag_abs = 0;												// Флаг для операции модуль 
 	bool flag_var = 0;												// Флаг для проверки наличия переменной в структуре
 
-	RPN = new char[max];
+	RPN = new char[2*strlen(str)+1];
 
 	while (str[i] != '\0')
 	{
@@ -182,7 +181,7 @@ int Arithmetic::priority(char op)
 	case '^':
 		return 3;
 		break;
-	default: throw logic_error("Error description");
+	default:;
 	}
 }
 

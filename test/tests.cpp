@@ -2,10 +2,10 @@
 #include "Arithmetic.h"
 #include "Stack.h"
 
-TEST(RPN, empty_string)
+TEST(RPN, double_minus)
 {
-	char act[] = "";
-	EXPECT_NO_THROW(Arithmetic str(act));
+	char act[] = "--2";
+	EXPECT_ANY_THROW(Arithmetic str(act));
 }
 
 TEST(RPN, incorrect_brackets)
@@ -308,12 +308,16 @@ int main(int ac, char* av[])
 		v[1].name = 'y';
 		v[1].value = 3;
 
-		char act[] = "x+y";							// Исходное выражение в инфиксной записи 
+		char act[] = "|y-x|";						// Исходное выражение в инфиксной записи 
 
 		Arithmetic str(act);						// Конструктор преобразования строки в форму ОПЗ
 		char* RPN = str.getRPN();					// Получаем строку в форме ОПЗ
 		double res = str.calculation(RPN, v, 2);	// Вычисляем выражение, используя ОПЗ
 
+		cout << "Input: " << act << endl;
+		cout << "Output: " << RPN << endl;
+		cout << "Result: " << res << endl << endl;
+		
 		testing::InitGoogleTest(&ac, av);
 		return RUN_ALL_TESTS();
 }
